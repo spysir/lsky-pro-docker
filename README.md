@@ -32,37 +32,30 @@ version: '3'
 services:
   lskypro:
     image: halcyonazure/lsky-pro-docker:latest
-    restart: unless-stopped
-    hostname: lskypro
     container_name: lskypro
-    volumes:
-      - /data/lsky:/var/www/html
-    ports:
-      - "9080:80"
-    networks:
-      - lsky-net
-
-  mysql-lsky:
-    image: mysql:5.7.22
     restart: unless-stopped
-    # 主机名，可作为子网域名填入安装引导当中
-    hostname: mysql-lsky
-    # 容器名称
-    container_name: mysql-lsky
-    # 修改加密规则
+    volumes:
+      - /root/lskypro/html:/var/www/html
+    ports:
+      - 9080:80
+    
+    depends_on:
+      - db
+    
+ db:
+    image: mysql:5.7.22
+    container_name: mysql
+    restart: unless-stopped
     command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - /data/lsky/mysql/data:/var/lib/mysql
-      - /data/lsky/mysql/conf:/etc/mysql
-      - /data/lsky/mysql/log:/var/log/mysql
+      - /root/lskypro/mysql/data:/var/lib/mysql
+      - /root/lskypro/mysql/conf:/etc/mysql
+      - /root/lskypro/mysql/log:/var/log/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: lAsWjb6rzSzENUYg # 数据库root用户密码
-      MYSQL_DATABASE: lsky-data # 给lsky-pro用的数据库名称
-    networks:
-      - lsky-net
+      - MYSQL_ROOT_PASSWORD=TWqiVWMqN7mSTu
+      - MYSQL_DATABASE=lskydb   
 
-networks:
-  lsky-net:
+    
 ```
 
-原项目：[☁️兰空图床(Lsky Pro) - Your photo album on the cloud.](https://github.com/lsky-org/lsky-pro)
+原项目：[兰空图床](https://github.com/lsky-org/lsky-pro)
