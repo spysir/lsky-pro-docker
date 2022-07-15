@@ -25,7 +25,7 @@ docker exec -it lskypro sed -i '32 a \\\Illuminate\\Support\\Facades\\URL::force
 
 ## Docker-Compose部署参考
 
-使用`MySQL`来作为数据库的话参考内容如下：
+使用`MySQL`来作为数据库的话参考内容如下
 
 ```yaml
 version: '3'
