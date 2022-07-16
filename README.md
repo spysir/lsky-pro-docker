@@ -23,7 +23,7 @@ docker run -d \
 docker exec -it lskypro sed -i '32 a \\\Illuminate\\Support\\Facades\\URL::forceScheme('"'"'https'"'"');' /var/www/html/app/Providers/AppServiceProvider.php
 ```
 
-## Docker-Compose部署参考
+## Docker-Compose部署
 
 使用`MySQL`来作为数据库的话参考内容如下
 
