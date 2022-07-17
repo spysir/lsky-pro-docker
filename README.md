@@ -43,7 +43,7 @@ services:
       - db
     
  db:
-    image: mysql:5.7.22
+    image: mysql:latest
     container_name: mysql
     restart: unless-stopped
     command: --default-authentication-plugin=mysql_native_password
