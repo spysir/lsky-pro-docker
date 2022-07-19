@@ -76,7 +76,7 @@ services:
     
   db:
      image: postgres:14.4-alpine
-     container_name: pgsql
+     container_name: postgres
      restart: always
      environment:
        - POSTGRES_DB=lskypro
