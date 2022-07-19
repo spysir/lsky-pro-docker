@@ -57,5 +57,33 @@ services:
 
     
 ```
+使用`PostgreSQL`来作为数据库的话参考内容如下
 
+```yaml
+version: '3.8'
+services:
+  lskypro:
+    image: halcyonazure/lsky-pro-docker:latest
+    container_name: lskypro
+    restart: always
+    volumes:
+      - /root/lskypro/html:/var/www/html
+    ports:
+      - 30000:80
+    
+    depends_on:
+      - db
+    
+  db:
+     image: postgres:14.4-alpine
+     container_name: pgsql
+     restart: always
+     environment:
+       - POSTGRES_DB=lskypro
+       - POSTGRES_USER=lskypro
+       - POSTGRES_PASSWORD=lskypro
+     volumes:
+       - /root/lskypro/postgres:/var/lib/postgresql/data   
+ 
+```
 原项目：[兰空图床](https://github.com/lsky-org/lsky-pro)
